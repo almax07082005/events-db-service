@@ -1,0 +1,19 @@
+name: "events-db-service"
+
+services:
+  events-db:
+    image: "postgres:latest"
+    container_name: "events-db"
+    tty: true
+    env_file: ./.env
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_DB: "events-db"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "events-db-volume:/var/lib/postgresql/data"
+
+volumes:
+  events-db-volume:
